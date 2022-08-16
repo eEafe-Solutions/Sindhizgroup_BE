@@ -6,7 +6,9 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Contacts\Http\Requests\ContactAddRequest;
+use Modules\Contacts\Http\Resources\ContactsResourceCollection;
 use Modules\Contacts\Entities\Contact;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ContactsController extends Controller
 {
@@ -15,12 +17,17 @@ class ContactsController extends Controller
     {
         $this->middleware(['auth:api-system-user'])->except([
             'store',
+            'index'
         ]);
     }
 
     public function index()
     {
-        // 
+        return response()->json([
+            'data' => ContactsResourceCollection::make(QueryBuilder::for(Contact::class)
+                ->allowedSorts(['-name', '-email', '-massage'])
+                ->paginate())
+        ]);
     }
 
 

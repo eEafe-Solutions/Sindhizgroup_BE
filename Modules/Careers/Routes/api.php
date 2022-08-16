@@ -17,4 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/careers', function (Request $request) {
     return $request->user();
 });
+
 Route::post('addcareer', [CareersController::class, 'store']);
+Route::get('AllCareers', [CareersController::class, 'index']);

@@ -5,10 +5,12 @@ namespace Modules\Careers\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Careers\Http\Resources\CareersResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Modules\Careers\Http\Requests\CareerCreateRequest;
 use Modules\Careers\Entities\Career;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class CareersController extends Controller
 {
@@ -18,15 +20,20 @@ class CareersController extends Controller
     {
         $this->middleware(['auth:api-system-user'])->except([
             'store',
+            'index'
         ]);
     }
     /**
-     * Display a listing of the resource.
-     * @return Renderable
+     *   * @return CareersResourceCollection
+     * @return ResponseFactory|Response
      */
     public function index()
     {
-        //   view
+        return response()->json([
+            'data' => CareersResourceCollection::make(QueryBuilder::for(Career::class)
+                ->allowedSorts(['-name', '-email', '-position'])
+                ->paginate())
+        ]);
     }
 
 
@@ -51,7 +58,6 @@ class CareersController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**
