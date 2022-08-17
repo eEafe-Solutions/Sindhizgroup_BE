@@ -11,17 +11,14 @@ use Illuminate\Contracts\Routing\ResponseFactory;
 use Modules\Careers\Http\Requests\CareerCreateRequest;
 use Modules\Careers\Entities\Career;
 use Spatie\QueryBuilder\QueryBuilder;
+use App\Mail\careersmail;
+use Mail;
 
 class CareersController extends Controller
 {
-
-
     public function __construct()
     {
-        $this->middleware(['auth:api-system-user'])->except([
-            'store',
-            'index'
-        ]);
+        $this->middleware(['auth:api-system-user'])->except(['store', 'index']);
     }
     /**
      *   * @return CareersResourceCollection
@@ -30,12 +27,13 @@ class CareersController extends Controller
     public function index()
     {
         return response()->json([
-            'data' => CareersResourceCollection::make(QueryBuilder::for(Career::class)
-                ->allowedSorts(['-name', '-email', '-position'])
-                ->paginate())
+            'data' => CareersResourceCollection::make(
+                QueryBuilder::for(Career::class)
+                    ->allowedSorts(['-name', '-email', '-position'])
+                    ->paginate()
+            ),
         ]);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -46,14 +44,24 @@ class CareersController extends Controller
     {
         $data = $request->validated();
 
-
         $cvfile = $request->file('cv');
 
         $filename = $cvfile->hashName();
         $cvfile->move(public_path('/cvfiles'), $filename);
-        $file_path = "/cvfiles/" . $filename;
-        $data['cv'] =  $file_path;
+        $file_path = '/cvfiles/' . $filename;
+        $data['cv'] = $file_path;
+        $contain = [
+            'applied_position' => $data['position'],
+            'email' => $data['email'],
+            'name' => $data['name'],
+            'massage' => $data['massage'],
+        ];
+        
         Career::create($data);
+
+        Mail::to('yasinduramanayake123@gmail.com')->send(
+            new careersmail($contain)
+        );
 
         return response([
             'data' => $data,
