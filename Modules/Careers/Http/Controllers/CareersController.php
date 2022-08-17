@@ -45,7 +45,16 @@ class CareersController extends Controller
     public function store(CareerCreateRequest $request)
     {
         $data = $request->validated();
+
+
+        $cvfile = $request->file('cv');
+
+        $filename = $cvfile->hashName();
+        $cvfile->move(public_path('/cvfiles'), $filename);
+        $file_path = "/cvfiles/" . $filename;
+        $data['cv'] =  $file_path;
         Career::create($data);
+
         return response([
             'data' => $data,
         ]);

@@ -17,6 +17,7 @@ class Career extends Model
         'name',
         'email',
         'massage',
-        'position'
+        'position',
+        'cv'
     ];
 }

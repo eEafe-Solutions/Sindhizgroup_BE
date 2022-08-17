@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('position');
             $table->string('massage');
+            $table->longText('cv');
             $table->timestamps();
         });
     }

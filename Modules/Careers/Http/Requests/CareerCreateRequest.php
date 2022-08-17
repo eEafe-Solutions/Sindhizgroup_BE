@@ -27,7 +27,8 @@ class CareerCreateRequest extends FormRequest
             "email" => "required|string|email:rfc,dns",
             "name" => "required",
             "massage" => "required",
-            "position" => "required"
+            "position" => "required",
+            "cv" => "required"
         ];
     }
 }
