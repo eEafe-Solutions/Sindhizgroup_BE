@@ -19,16 +19,17 @@
 </head>
 
 <body>
+    <center>
 
-    <div style="padding-top:10%;padding-left:40%;">
-        <h2>You have new Applicant here! </h2>
+        <div>
+            <h2>You have new Applicant here! </h2>
 
-        <h3><b>his/her details are below</h3><b>
-            <p>Applied Position : {{$contain['applied_position']}}</p>
-            <p>Massage Of the Applicant : {{$contain['massage']}}</p>
-    </div>
+            <h3><b>his/her details are below</h3><b>
+                <p>Applied Position : {{$contain['applied_position']}}</p>
+                <p>Massage Of the Applicant : {{$contain['massage']}}</p>
+        </div>
 
-   
+    </center>
 </body>
 
 </html>

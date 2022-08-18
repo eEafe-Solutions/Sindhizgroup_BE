@@ -30,6 +30,7 @@ class CareersController extends Controller
         return response()->json([
             'data' => CareersResourceCollection::make(
                 QueryBuilder::for(Career::class)
+                    ->allowedFilters(['position'])
                     ->allowedSorts(['-name', '-email', '-position'])
                     ->paginate()
             ),

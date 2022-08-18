@@ -19,14 +19,13 @@
 </head>
 
 <body>
-
     <center>
 
-        <div>
-            <h1>Your Application is submitted</h2>
+        <div style="padding-top:10%;padding-left:40%;">
+            <h1>Your request is submitted</h2>
 
 
-                <p>Thank you for your interest in Sindhiz Group. Our hr team will review your application and get back to you as soon.</p>
+                <p>Thank you for your interest in Sindhiz Group. Our hr team will get back to you as soon.</p>
 
         </div>
 
