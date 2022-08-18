@@ -23,7 +23,7 @@
     <center>
 
         <div>
-            <h1>Your Application is submitted</h2>
+            <h1>Your Application is submitted</h1>
 
 
                 <p>Thank you for your interest in Sindhiz Group. Our hr team will review your application and get back to you as soon.</p>

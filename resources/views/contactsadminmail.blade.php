@@ -22,7 +22,7 @@
 
     <center>
         <div>
-            <h2><b>You have new a new massage from {{$contacts['name']}}</b></h2>
+            <h1><b>You have new a new massage from {{$contacts['name']}}</b></h1>
 
             <p>You can contact him via {{$contacts['mobile']}}</p>
             <p>See more details in your admin dashboard...</p>
