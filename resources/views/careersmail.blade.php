@@ -24,7 +24,7 @@
         <h2>You have new Applicant here! </h2>
 
         <h3><b>his/her details are below</h3><b>
-            <p>Applies Poaition : {{$contain['applied_position']}}</p>
+            <p>Applied Position : {{$contain['applied_position']}}</p>
             <p>Massage Of the Applicant : {{$contain['massage']}}</p>
     </div>
 

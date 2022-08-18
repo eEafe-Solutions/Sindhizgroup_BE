@@ -29,6 +29,6 @@ class careersmail extends Mailable
      */
     public function build()
     {
-        return $this->view('careersmail')->with('contain', $this->contain)->markdown('careersmail');
+        return $this->view('careersmail')->subject('Apply for  '  . $this->contain['applied_position'])->with('contain', $this->contain)->markdown('careersmail');
     }
 }
