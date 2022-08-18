@@ -21,16 +21,15 @@
 <body>
 
     <center>
-
         <div>
-            <h1>Your Application is submitted</h2>
+            <h2><b>You have new a new massage from {{$contacts['name']}}</b></h2>
 
-
-                <p>Thank you for your interest in Sindhiz Group. Our hr team will review your application and get back to you as soon.</p>
+            <p>You can contact him via {{$contacts['mobile']}}</p>
+            <p>See more details in your admin dashboard...</p>
 
         </div>
-
     </center>
+
 </body>
 
 </html>

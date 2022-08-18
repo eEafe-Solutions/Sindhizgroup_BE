@@ -9,6 +9,9 @@ use Modules\Contacts\Http\Requests\ContactAddRequest;
 use Modules\Contacts\Http\Resources\ContactsResourceCollection;
 use Modules\Contacts\Entities\Contact;
 use Spatie\QueryBuilder\QueryBuilder;
+use App\Mail\contactsadminmail;
+use App\Mail\contactsusermail;
+use Mail;
 
 class ContactsController extends Controller
 {
@@ -25,6 +28,7 @@ class ContactsController extends Controller
     {
         return response()->json([
             'data' => ContactsResourceCollection::make(QueryBuilder::for(Contact::class)
+                ->allowedFilters(['created_at'])
                 ->allowedSorts(['-name', '-email', '-massage'])
                 ->paginate())
         ]);
@@ -39,7 +43,25 @@ class ContactsController extends Controller
     public function store(ContactAddRequest $request)
     {
         $contactdata = $request->validated();
+
         Contact::create($contactdata);
+
+
+        $contacts = [
+            'mobile' => $contactdata['mobile'],
+            'name' => $contactdata['name'],
+        ];
+
+
+        Mail::to('madawarathnayake1234@gmail.com')->send(
+            new contactsadminmail($contacts)
+        );
+
+        Mail::to($contactdata['email'])->send(
+            new contactsusermail()
+        );
+
+
         return response([
             'data' => $contactdata,
         ]);
