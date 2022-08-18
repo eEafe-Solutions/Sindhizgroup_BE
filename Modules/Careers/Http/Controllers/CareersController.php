@@ -57,18 +57,22 @@ class CareersController extends Controller
             'name' => $data['name'],
             'massage' => $data['massage'],
         ];
+
         $contain2 = [
             'applied_position' => $data['position'],
         ];
-        
+
+
         Career::create($data);
 
-        Mail::to('Hr@sindhizgroup.com.au')->send(
+        Mail::to('madawarathnayake1234@gmail.com')->send(
             new careersmail($contain)
         );
+
         Mail::to($data['email'])->send(
             new careersusersidemail($contain2)
         );
+
         return response([
             'data' => $data,
         ]);
