@@ -21,7 +21,7 @@
 <body>
     <center>
 
-        <div style="padding-top:10%;padding-left:40%;">
+        <div>
             <h1>Your request is submitted</h2>
 
 
