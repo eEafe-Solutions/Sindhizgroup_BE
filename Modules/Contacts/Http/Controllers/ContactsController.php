@@ -8,6 +8,8 @@ use Illuminate\Routing\Controller;
 use Modules\Contacts\Http\Requests\ContactAddRequest;
 use Modules\Contacts\Http\Resources\ContactsResourceCollection;
 use Modules\Contacts\Entities\Contact;
+use Illuminate\Http\Response;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Spatie\QueryBuilder\QueryBuilder;
 use App\Mail\contactsadminmail;
 use App\Mail\contactsusermail;
@@ -30,7 +32,7 @@ class ContactsController extends Controller
             'data' => ContactsResourceCollection::make(QueryBuilder::for(Contact::class)
                 ->allowedFilters(['created_at'])
                 ->allowedSorts(['-name', '-email', '-massage'])
-                ->paginate())
+                ->paginate(request()->query('per_page')))
         ]);
     }
 
