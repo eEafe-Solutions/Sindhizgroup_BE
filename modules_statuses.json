@@ -1,5 +1,6 @@
 {
     "User": true,
     "Careers": true,
-    "Contacts": true
+    "Contacts": true,
+    "Locations": true
 }

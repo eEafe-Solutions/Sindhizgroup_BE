@@ -32,7 +32,7 @@ class CareersController extends Controller
                 QueryBuilder::for(Career::class)
                     ->allowedFilters(['position'])
                     ->allowedSorts(['-name', '-email', '-position'])
-                    ->paginate()
+                    ->paginate(request()->query('per_page'))
             ),
         ]);
     }
