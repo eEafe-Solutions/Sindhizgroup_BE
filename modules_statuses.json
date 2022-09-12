@@ -2,5 +2,6 @@
     "User": true,
     "Careers": true,
     "Contacts": true,
-    "Locations": true
+    "Locations": true,
+    "Users": true
 }

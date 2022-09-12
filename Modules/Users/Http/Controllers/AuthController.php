@@ -2,15 +2,14 @@
 
 namespace Modules\Users\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+
+
+use Illuminate\Routing\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
 use Auth;
-use Modules\Users\Entities\User;
-use Modules\Users\Http\Requests\UserRegisterRequest;
 use Modules\Users\Http\Requests\UserSignInRequest;
 use Illuminate\Validation\ValidationException;
-use Modules\Users\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
@@ -19,15 +18,8 @@ class AuthController extends Controller
         $this->middleware(['auth:api-system-user'])->except([
             'login',
             'profile',
-
         ]);
     }
-
-    /**
-     * @param UserRegisterRequest $request
-     * @return ResponseFactory|Response
-     */
-
     /**
      * @param UserSignInRequest $request
      * @return ResponseFactory|Response
@@ -47,15 +39,5 @@ class AuthController extends Controller
                 ->user()
                 ->createToken('api-system-user')->accessToken,
         ]);
-    }
-    /**
-     * Show user profile.
-     *
-     * @return UserResource
-     */
-
-    public function profile()
-    {
-        return new UserResource(auth('api')->user());
     }
 }
