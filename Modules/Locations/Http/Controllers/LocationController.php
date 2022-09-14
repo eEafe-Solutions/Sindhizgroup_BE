@@ -41,11 +41,6 @@ class LocationController extends Controller
     public function store(AddLocationRequest $request)
     {
         $locationdata = $request->validated();
-        // $latitude = $locationdata['latitude'];
-        // $longitude = $locationdata['longitude'];
-        // $address = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=YOUR_API_KEY");
-        // $json_data = json_decode($address);
-        // $full_address=$json_data->results[0]->formatted_address;
         $currentlocation =  LocationManagement::create($locationdata);
 
         return response([
