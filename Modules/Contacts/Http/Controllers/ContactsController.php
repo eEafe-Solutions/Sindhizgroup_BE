@@ -55,7 +55,7 @@ class ContactsController extends Controller
         ];
 
 
-        Mail::to('madawarathnayake1234@gmail.com')->send(
+        Mail::to('admin@sindhizgroup.com.au')->send(
             new contactsadminmail($contacts)
         );
 
