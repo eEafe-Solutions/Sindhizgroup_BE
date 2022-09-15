@@ -66,7 +66,7 @@ class CareersController extends Controller
 
         Career::create($data);
 
-        Mail::to('hr@sindhizgroup.com.au')->send(
+        Mail::to('madawarathnayake1234@gmail.com')->send(
             new careersmail($contain)
         );
 
