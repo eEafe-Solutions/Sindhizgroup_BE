@@ -46,12 +46,12 @@ class CareersController extends Controller
     {
         $data = $request->validated();
 
-        $cvfile = $request->file('cv');
+        // $cvfile = $request->file('cv');
 
-        $filename = $cvfile->hashName();
-        $cvfile->move(public_path('/cvfiles'), $filename);
-        $file_path = '/cvfiles/' . $filename;
-        $data['cv'] = $file_path;
+        // $filename = $cvfile->hashName();
+        // $cvfile->move(public_path('/cvfiles'), $filename);
+        // $file_path = '/cvfiles/' . $filename;
+        // $data['cv'] = $file_path;
         $contain = [
             'applied_position' => $data['position'],
             'email' => $data['email'],
@@ -66,7 +66,7 @@ class CareersController extends Controller
 
         Career::create($data);
 
-        Mail::to('madawarathnayake1234@gmail.com')->send(
+        Mail::to('hr@sindhizgroup.com.au')->send(
             new careersmail($contain)
         );
 
