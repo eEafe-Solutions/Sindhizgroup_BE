@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/users', function (Request $request) {
 
 
 Route::post('login', [AuthController::class, 'login']);
+Route::get('profile', [AuthController::class, 'profile']);
 
 
 
