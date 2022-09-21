@@ -9,15 +9,16 @@ use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
 use Auth;
 use Modules\Users\Http\Requests\UserSignInRequest;
+use Modules\Users\Http\Resources\UserResource;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:api-system-user'])->except([
+        $this->middleware(['auth:api'])->except([
             'login',
-            'profile',
+            'profile'
         ]);
     }
     /**
@@ -39,5 +40,17 @@ class AuthController extends Controller
                 ->user()
                 ->createToken('api-system-user')->accessToken,
         ]);
+    }
+
+
+    /**
+     * Show user profile.
+     *
+     * @return UserResource
+     */
+
+    public function profile()
+    {
+        return new UserResource(auth('api')->user());
     }
 }
