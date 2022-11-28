@@ -18,7 +18,6 @@ class AuthController extends Controller
     {
         $this->middleware(['auth:api'])->except([
             'login',
-            'profile'
         ]);
     }
     /**
@@ -52,5 +51,15 @@ class AuthController extends Controller
     public function profile()
     {
         return new UserResource(auth('api')->user());
+    }
+
+
+    public function logout()
+    {
+        $user = Auth::user()->token();
+        $user->revoke();
+        return response([
+            'data' => 'logged out',
+        ]);
     }
 }

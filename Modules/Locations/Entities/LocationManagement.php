@@ -13,6 +13,6 @@ class LocationManagement extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'longitude', 'latitude'
+        'longitude', 'latitude' , 'address'
     ];
 }

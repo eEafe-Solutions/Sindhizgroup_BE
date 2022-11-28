@@ -20,9 +20,8 @@ class ContactsController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth:api-system-user'])->except([
+        $this->middleware(['auth:api'])->except([
             'store',
-            'index'
         ]);
     }
 

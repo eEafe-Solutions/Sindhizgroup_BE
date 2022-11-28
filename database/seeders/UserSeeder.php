@@ -16,10 +16,17 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'Test User',
-            'email' => 'Admin@sindhizgroup.com.au',
-            'password' => bcrypt('kodwani123#'),
-        ]);
+        User::create(
+            [
+                'name' => 'Test User',
+                'email' => 'Admin@sindhizgroup.com.au',
+                'password' => bcrypt('kodwani123#'),
+            ],
+            [
+                'name' => 'Yasindu',
+                'email' => 'yasinduramanayake123@gmail.com',
+                'password' => bcrypt('yasindu123#'),
+            ]
+        );
     }
 }

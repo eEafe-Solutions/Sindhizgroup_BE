@@ -16,7 +16,7 @@ class LocationController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth:api-system-user'])->except(['store', 'index']);
+        $this->middleware(['auth:api']);
     }
 
 
