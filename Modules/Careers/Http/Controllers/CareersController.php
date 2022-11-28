@@ -19,7 +19,7 @@ class CareersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:api-system-user'])->except(['store', 'index']);
+        $this->middleware(['auth:api'])->except(['store']);
     }
     /**
      *   * @return CareersResourceCollection

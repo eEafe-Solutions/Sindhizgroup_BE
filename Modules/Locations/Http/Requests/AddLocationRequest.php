@@ -27,6 +27,7 @@ class AddLocationRequest extends FormRequest
         return [
             'longitude'  => "required|max:1000",
             'latitude' => "required|max:1000",
+            'address' => "required|max:1000",
         ];
     }
 }
