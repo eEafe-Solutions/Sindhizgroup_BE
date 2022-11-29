@@ -21,4 +21,4 @@ Route::middleware('auth:api')->get('/contacts', function (Request $request) {
 
 
 Route::post('addcontact', [ContactsController::class, 'store']);
-Route::get('AllContacts', [ContactsController::class, 'index']);
+Route::middleware('auth:api')->get('AllContacts', [ContactsController::class, 'index']);

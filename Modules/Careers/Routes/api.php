@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/careers', function (Request $request) {
 });
 
 Route::post('addcareer', [CareersController::class, 'store']);
-Route::get('AllCareers', [CareersController::class, 'index']);
+Route::middleware('auth:api')->get('AllCareers', [CareersController::class, 'index']);

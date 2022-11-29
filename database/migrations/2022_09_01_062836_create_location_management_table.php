@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('longitude');
             $table->string('latitude');
             $table->string('address');
-           
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

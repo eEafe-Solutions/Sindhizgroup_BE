@@ -2,6 +2,8 @@
 
 namespace Modules\Locations\Http\Controllers;
 
+
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Locations\Entities\LocationManagement;
@@ -16,7 +18,7 @@ class LocationController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth:api']);
+        // $this->middleware(['auth:api']);
     }
 
 
@@ -25,7 +27,7 @@ class LocationController extends Controller
 
 
         return response()->json([
-            'data' => LocationsResourceCollection::make(QueryBuilder::for(LocationManagement::class)
+            'data' => LocationsResourceCollection::make(QueryBuilder::for(LocationManagement::with('user'))
                 ->allowedFilters(['current_location'])
                 ->allowedSorts(['current_location'])
                 ->paginate())
@@ -40,11 +42,21 @@ class LocationController extends Controller
      */
     public function store(AddLocationRequest $request)
     {
-        $locationdata = $request->validated();
-        $currentlocation =  LocationManagement::create($locationdata);
+        
+        $user = Auth::user();
 
+        $locationdata = $request->validated();
+        $location = new LocationManagement();
+
+        $location->longitude =   $locationdata['longitude'];
+        $location->latitude =   $locationdata['latitude'];
+        $location->address =   $locationdata['address'];
+        $location->user_id = $user->id;
+        $location->save();
+
+        
         return response([
-            'data' => $currentlocation,
+            'data' => $location,
         ]);
     }
 }

@@ -20,5 +20,5 @@ Route::middleware('auth:api')->get('/locations', function (Request $request) {
 });
 
 
-Route::post('addlocation', [LocationController::class, 'store']);
-Route::get('Alllocations', [LocationController::class, 'index']);
+Route::middleware('auth:api')->post('addlocation', [LocationController::class, 'store']);
+Route::middleware('auth:api')->get('Alllocations', [LocationController::class, 'index']);
