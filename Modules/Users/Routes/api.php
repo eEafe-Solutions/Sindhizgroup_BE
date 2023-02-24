@@ -5,6 +5,7 @@
 use Illuminate\Http\Request;
 use Modules\Users\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +26,11 @@ Route::middleware('auth:api')->get('/users', function (Request $request) {
 Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:api')->get('profile', [AuthController::class, 'profile']);
 Route::middleware('auth:api')->get('logout', [AuthController::class, 'logout']);
+
+Route::get('/run-migrations', function () {
+    return Artisan::call('migrate', ["--force" => true]);
+});
+
+
 
 
